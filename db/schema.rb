@@ -10,8 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_15_193552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "cnabs", force: :cascade do |t|
+    t.integer "type_cnabs"
+    t.date "date_ocurrence"
+    t.decimal "value"
+    t.integer "card"
+    t.string "hours"
+    t.bigint "deal_id", null: false
+    t.bigint "store_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["deal_id"], name: "index_cnabs_on_deal_id"
+    t.index ["store_id"], name: "index_cnabs_on_store_id"
+    t.index ["user_id"], name: "index_cnabs_on_user_id"
+  end
+
+  create_table "deals", force: :cascade do |t|
+    t.integer "type_transaction"
+    t.string "description"
+    t.string "nature"
+    t.string "signal"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string "strore_owner"
+    t.string "cpf"
+    t.string "store_name"
+    t.decimal "balance_total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.string "full_name"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "cnabs", "deals"
+  add_foreign_key "cnabs", "stores"
+  add_foreign_key "cnabs", "users"
 end
