@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), class:'form-signin') do |f| %>
-    <h1 class="h3 mb-3 font-weight-normal">Desafio Back-End da Blu</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Desafio do Instituto Brasileiro de Coaching</h1>
     <p class="text-left">Entrar</p>
     <%= f.label :email, class:'sr-only' %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %>
@@ -16,10 +16,10 @@
     <% end %>
 
     <%= f.submit "Entrar", class:'btn btn-lg btn-primary btn-block' %>
-    <p class="mt-5 mb-3 text-muted">© 2020</p>
+    <p class="mt-5 mb-3 text-muted">© 2022</p>
     <%= render "devise/shared/links" %>
-    <%= link_to "Entre usando a conta do Google", '/users/auth/google_oauth2' %>
+    <%= link_to "Entre usando a conta do Google", user_google_oauth2_omniauth_authorize_path, method: :post %>
     <% end %>
-    <p>Feito por <a href='https://www.linkedin.com/in/gabriel-flauzino-484927b8/' target="_blank">Gabriel Flauzino Mota</a></p>
+    <p>Feito por <a href='https://www.linkedin.com/in/ueverton-oliveira-78a81113b/' target="_blank">Ueverton Oliveira de Souza</a></p>
   </div>
 </div>
