@@ -69,7 +69,7 @@
 - Test a specific file
 
   ```bash
-    docker-compose run --rm app bundle exec rspec spec
+    docker-compose run --rm app bundle exec rails test
    
 
   ```
